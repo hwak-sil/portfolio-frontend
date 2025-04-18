@@ -20,7 +20,7 @@ const TableSample = () => {
         setError(true);
       });
   }, []);
-
+  
   const categories = [
     { code: 'humor', label: '⛏️ 공사계약' },
     { code: 'info', label: '💉 KCD분류' },

@@ -20,7 +20,7 @@ function App() {
         <NavBar />
       </div>
       
-        <div className="min-h-screen bg-base-200 text-base-content dark:bg-zinc-900 dark:text-white">
+        <div className="min-h-screen bg-base-100 text-base-content dark:bg-zinc-900">
           
             {/* ✅ 중앙 컨텐츠 영역 */}
             <main className="flex-grow w-full px-4 max-w-4xl mx-auto">

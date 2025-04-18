@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import api from "../../api/axiosInstance";
 import { useLocation, useNavigate } from 'react-router-dom';
+import Button from '../common/Button';
 
 const regist = () => {
 
@@ -87,7 +88,7 @@ const regist = () => {
             alert('회원가입되었습니다.')
             localStorage.setItem("nickname", nickname);
             localStorage.setItem("userid", id);
-            window.location.href = "/";
+            window.location.href = "/board";
             
         } catch(err){
             console.error('save fail', err)
@@ -96,50 +97,95 @@ const regist = () => {
     }
 
     return (
+        <main className="max-w-4xl mx-auto p-6 bg-base-100 rounded-xl shadow-lg">
+        <h2 className='text-2xl font-bold mb-6'>📋 회원가입</h2>
+        <form onSubmit={handleSubmit} className='space-y-4'>
         <div>
-        <h2>📋 회원가입</h2>
-        <form onSubmit={handleSubmit}>
-        <table>
-            <tbody>
-                <tr>
-                    <th>아이디</th>
-                    <td><input type='text' value={id} onChange={(e) => {setId(e.target.value); setIdChecked(false);}} required/>
-                        <button type="button" style={{color:'white', background:'grey'}} onClick={idCheck} >중복확인</button>
-                        {errorMsg && (
-                            <p style={{ 
-                                color: isIdAvailable === true ? 'green' : 'red', 
-                                marginTop: '5px' 
-                              }}>
-                                {errorMsg}
-                              </p>
-                        )}
-                    </td>
-                </tr>
-                <tr>
-                    <th>닉네임</th>
-                    <td><input type='text' value={nickname} onChange={(e) => setNickName(e.target.value)} required /></td>
-                </tr>
-                <tr>
-                    <th>패스워드</th>
-                    <td><input type='text' value={password} onChange={(e) => handlePasswordChange(e.target.value)} required /></td>
-                </tr>
-                <tr>
-                    <th>패스워드확인</th>
-                    <td><input type='password' value={passwordCheck} onChange={(e) => handlePasswordCheck(e.target.value)} required />
-                    {!passwordMatch && (
-                        <p style={{ color: 'red', marginTop: '5px' }}>
-                            {passErrMsg}
-                        </p>
-                    )}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <button type="submit" style={{color:'white', background:'grey'}} >저장</button>
+            <label className="label">
+                <span className="label-text">아이디</span>
+            </label>
+            <div className="flex gap-2">
+                <input
+                type="text"
+                value={id}
+                onChange={(e) => {
+                    setId(e.target.value);
+                    setIdChecked(false);
+                }}
+                required
+                className="input input-bordered w-full"
+                />
+                <Button type="button" onClick={idCheck}>
+                중복확인
+                </Button>
+            </div>
+            {errorMsg && (
+                <p
+                className={`text-sm mt-1 ${
+                    isIdAvailable ? "text-green-500" : "text-red-500"
+                }`}
+                >
+                {errorMsg}
+                </p>
+            )}
+            </div>
+
+            {/* 닉네임 */}
+            <div>
+            <label className="label">
+                <span className="label-text">닉네임</span>
+            </label>
+            <input
+                type="text"
+                value={nickname}
+                onChange={(e) => setNickName(e.target.value)}
+                required
+                className="input input-bordered w-full"
+            />
+            </div>
+
+            {/* 패스워드 */}
+            <div>
+            <label className="label">
+                <span className="label-text">패스워드</span>
+            </label>
+            <input
+                type="password"
+                value={password}
+                onChange={(e) => handlePasswordChange(e.target.value)}
+                required
+                className="input input-bordered w-full"
+            />
+            </div>
+
+            {/* 패스워드 확인 */}
+            <div>
+            <label className="label">
+                <span className="label-text">패스워드 확인</span>
+            </label>
+            <input
+                type="password"
+                value={passwordCheck}
+                onChange={(e) => handlePasswordCheck(e.target.value)}
+                required
+                className="input input-bordered w-full"
+            />
+            {!passwordMatch && (
+                <p className="text-red-500 text-sm mt-1">{passErrMsg}</p>
+            )}
+            </div>
+
+            {/* 버튼 */}
+            <div className="flex justify-between mt-6">
+            <Button type="submit" >
+                회원가입
+            </Button>
+            <Button type="button"  onClick={goToHome}>
+                취소
+            </Button>
+            </div>
         </form>
-        <button style={{color:'white', background:'grey'}} onClick={goToHome}>취소</button>
-        </div>
+        </main>
     );
 }
 

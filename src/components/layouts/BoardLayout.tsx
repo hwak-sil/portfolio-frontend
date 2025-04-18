@@ -116,6 +116,9 @@ const BoardLayout = ({ children }: { children: React.ReactNode }) => {
           )}
       </div>
       <div className="md:hidden">
+        <p className='text-sm sm:text-base md:text-lg'>샘플게시판</p>
+      </div>
+      <div className="md:hidden">
         <button onClick={toggleMobileNav}>☰</button>
       </div>
       </nav>

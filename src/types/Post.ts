@@ -5,6 +5,7 @@ export interface Post {
     createdAt: string;
     category: string;
     views: number;
-    writerId:string
+    writerId:string;
+    nickname:string;
 }
 

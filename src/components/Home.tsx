@@ -18,18 +18,17 @@ export const Home = () => {
                 스타일은 tailwind에 이제 daisyui를 곁들였습니다.<br/>
               </p>
               <h1 className="text-2xl font-bold py-2">보유스킬</h1>
-              <div className="grid grid-cols-5 gap-2">
-                <div className="w-30 badge badge-primary">React</div>
-                <div className="w-30 badge badge-secondary">Java</div>
-                <div className="w-30 badge badge-accent">Spring Boot</div>
-                <div className="w-30 badge badge-warning">eGovFrame</div>
-                <div className="w-30 badge badge-primary">jquery</div>
-                <div className="w-30 badge badge-secondary">java script</div>
-                <div className="w-30 badge badge-info">Database</div>
-                <div className="w-30 badge badge-success">Tailwind CSS</div>
-                <div className="w-30 badge badge-error">websquare</div>
-                <div className="w-30 badge badge-neutral">ajax</div>
-                
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+                <div className="badge badge-primary w-full text-center py-2">React</div>
+                <div className="badge badge-secondary w-full text-center py-2">Java</div>
+                <div className="badge badge-accent w-full text-center py-2">Spring Boot</div>
+                <div className="badge badge-warning w-full text-center py-2">eGovFrame</div>
+                <div className="badge badge-primary w-full text-center py-2">jQuery</div>
+                <div className="badge badge-secondary w-full text-center py-2">JavaScript</div>
+                <div className="badge badge-info w-full text-center py-2">Database</div>
+                <div className="badge badge-success w-full text-center py-2">Tailwind CSS</div>
+                <div className="badge badge-error w-full text-center py-2">Websquare</div>
+                <div className="badge badge-neutral w-full text-center py-2">Ajax</div>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
-
+import Regist from '../assets/board-reg.png';
+import BoardList from '../assets/board-list.png';
+import BoardWrite from '../assets/board-write.png';
 
 const TableSamplePage = () => {
   return (
@@ -14,9 +16,9 @@ const TableSamplePage = () => {
 
       {/* 미리보기 이미지 */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10">
-        <img src="/images/board-list.png" alt="게시글 목록" className="rounded-lg shadow" />
-        <img src="/images/board-write.png" alt="게시글 작성" className="rounded-lg shadow" />
-        <img src="/images/board-detail.png" alt="게시글 상세" className="rounded-lg shadow" />
+        <img src={Regist} alt="회원가입" className="rounded-lg shadow" />
+        <img src={BoardList} alt="게시글 목록" className="rounded-lg shadow" />
+        <img src={BoardWrite} alt="게시글 작성" className="rounded-lg shadow" />
       </div>
 
       {/* 이동 버튼 */}

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import dayjs from 'dayjs';
 import CommentSection from './CommentSection';
+import Button from '../common/Button';
 
 
 
@@ -27,7 +28,7 @@ const PostDetail = () => {
         navigate('/posts')
     } catch(err){
         console.error('delete fail', err)
-        alert('서버 오류로 삭제에에 실패했습니다.')
+        alert('서버 오류로 삭제에 실패했습니다.')
     }
   }
 
@@ -48,43 +49,66 @@ const PostDetail = () => {
   }, [id]);
 
 
-  
-  
-  
-
   return (
-
-    <div>
-      <h2>{post?.title}</h2>
-      <p>작성자 {post?.writerId} || 등록일자 {post?.createdAt && dayjs(post.createdAt).format('YYYY-MM-DD HH:mm:ss')} || 조회수  {post?.views} </p>
+    <div className="max-w-3xl mx-auto bg-base-100 p-6 rounded-xl shadow-lg space-y-6">
+      {/* 제목 */}
+      <h2 className="text-2xl font-bold">{post?.title}</h2>
+  
+      {/* 메타 정보 */}
+      <p className="text-sm text-gray-400">
+        작성자: {post?.nickname} &nbsp;|&nbsp; 
+        등록일: {post?.createdAt && dayjs(post.createdAt).format('YYYY-MM-DD HH:mm:ss')} &nbsp;|&nbsp;
+        조회수: {post?.views}
+      </p>
+  
+      {/* 에러 메시지 */}
       {error && (
-        <p style={{ color: 'red' }}>⚠ 백엔드 서버가 꺼져 있어 내용을 불러올 수 없습니다.</p>
+        <p className="text-red-500 font-medium">
+          ⚠ 백엔드 서버가 꺼져 있어 내용을 불러올 수 없습니다.
+        </p>
       )}
-      <h2>{post?.content}</h2>
+  
+      {/* 본문 내용 */}
+      <div className="prose dark:prose-invert">
+        <p>{post?.content}</p>
+      </div>
 
-      {post && <CommentSection postId={post.id} />}
-
+      <div className="bg-base-200 p-4 rounded-lg shadow-sm flex justify-between items-center text-sm">
+        <button className="btn btn-sm btn-outline">← 이전글</button>
+        <button className="btn btn-sm btn-secondary" onClick={goToList}>목록으로</button>
+        {post && post.writerId === userid && (
+          <>
+            <Button
+              onClick={() =>
+                navigate('/write', {
+                  state: {
+                    id: post.id,
+                    title: post.title,
+                    content: post.content,
+                  },
+                })
+              }
+            >
+              수정
+            </Button>
+            <Button onClick={handleDelete}>
+              삭제
+            </Button>
+          </>
+        )}
+        <button className="btn btn-sm btn-outline">다음글 →</button>
+        
+      </div>
+      <div className='border-b border-zinc-300'></div>
+  
+      {/* 댓글 섹션 */}
+      <div className="bg-base-100 p-6 rounded-xl shadow-md space-y-4">
+      <div className="badge badge-neutral text-sm w-full">댓글 : 7개</div>
+        {post && <CommentSection postId={post.id} />}
+      </div>
       
-
-      <button style={{color:'white', background:'grey'}} onClick={goToList}>목록으로</button>
-      
-      {post && post.writerId ===  userid && (
-        <>
-        <button style={{color:'white', background:'grey'}} onClick={() => navigate('/write', {
-            state:{
-                id:post?.id,
-                title:post?.title,
-                content:post?.content
-            }
-            })}
-        >수정</button>
-
-        <button style={{color:'white', background:'grey'}} onClick={handleDelete}>삭제</button>
-        </>
-      )}
-
+  
     </div>
-    
   );
 };
 

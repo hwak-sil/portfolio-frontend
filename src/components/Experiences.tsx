@@ -87,7 +87,7 @@ const experiences = [
             {experiences.map((exp, idx) => (
                 <div key={idx} className="relative">
                 {/* ✅ 점 위치 약간 보정 */}
-                <div className="absolute -left-4 top-1 w-4 h-4 bg-primary rounded-full border-4 border-base-200 dark:border-zinc-900" />
+                <div className="absolute -left-4 top-1 w-4 h-4 bg-primary rounded-full border-4 border-base-content dark:border-zinc-900" />
                 <p className="text-sm">{exp.period}</p>
                 <h3 className="text-lg font-bold">{exp.title}</h3>
                 <p className="whitespace-pre-line text-sm">
